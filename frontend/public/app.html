@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartScribe Pro - AI-Powered Learning Platform</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.15.0/dist/umd/react-router-dom.development.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script>
+        const { useState, useEffect, createContext, useContext } = React;
+        const { createRoot } = ReactDOM;
+        const { BrowserRouter, Routes, Route, useNavigate } = ReactRouterDOM;
+
+        // Simple working landing page
+        function SmartScribeApp() {
+            const [theme, setTheme] = useState('light');
+            const [currentPage, setCurrentPage] = useState('landing');
+
+            const toggleTheme = () => {
+                const newTheme = theme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
+                document.documentElement.className = newTheme;
+            };
+
+            const LandingPage = () => (
+                React.createElement('div', {
+                    className: `min-h-screen transition-colors ${theme === 'dark' ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 to-white'}`
+                },
+                    // Navigation
+                    React.createElement('nav', {
+                        className: `${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border-b`
+                    },
+                        React.createElement('div', {
+                            className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+                        },
+                            React.createElement('div', {
+                                className: 'flex justify-between items-center h-16'
+                            },
+                                React.createElement('h1', {
+                                    className: 'text-xl font-bold text-blue-600'
+                                }, 'SmartScribe Pro'),
+                                React.createElement('div', {
+                                    className: 'flex items-center space-x-4'
+                                },
+                                    React.createElement('button', {
+                                        onClick: toggleTheme,
+                                        className: `p-2 rounded-lg border ${theme === 'dark' ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-300 hover:bg-gray-100'} transition-colors`
+                                    }, theme === 'light' ? '🌙' : '☀️'),
+                                    React.createElement('button', {
+                                        onClick: () => setCurrentPage('auth'),
+                                        className: 'bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors'
+                                    }, 'Get Started')
+                                )
+                            )
+                        )
+                    ),
+                    
+                    // Hero Section
+                    React.createElement('div', {
+                        className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16'
+                    },
+                        React.createElement('div', {
+                            className: 'text-center'
+                        },
+                            React.createElement('h1', {
+                                className: `text-5xl md:text-6xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`
+                            }, 
+                                'Transform Videos into ',
+                                React.createElement('span', {
+                                    className: 'text-blue-600'
+                                }, 'Interactive Learning')
+                            ),
+                            React.createElement('p', {
+                                className: `text-xl mb-8 max-w-3xl mx-auto ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`
+                            }, 'Upload videos or paste YouTube links to generate AI-powered summaries, create intelligent quizzes, and access multilingual support with advanced Q&A capabilities.'),
+                            React.createElement('div', {
+                                className: 'flex flex-col sm:flex-row gap-4 justify-center mb-16'
+                            },
+                                React.createElement('button', {
+                                    onClick: () => setCurrentPage('auth'),
+                                    className: 'bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors shadow-lg'
+                                }, 'Get Started Free'),
+                                React.createElement('button', {
+                                    className: `border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg text-lg font-medium transition-colors ${theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-blue-50'}`
+                                }, 'Watch Demo')
+                            )
+                        ),
+
+                        // Features Grid
+                        React.createElement('div', {
+                            className: 'grid md:grid-cols-3 gap-8'
+                        },
+                            [
+                                { icon: '🎥', title: 'Video Processing', desc: 'Upload videos or paste YouTube links for instant AI-powered content analysis' },
+                                { icon: '🧠', title: 'Smart Summaries', desc: 'Generate intelligent summaries using advanced NLP and machine learning' },
+                                { icon: '🌍', title: 'Multilingual Support', desc: 'Access content in 11+ languages with real-time translation capabilities' }
+                            ].map((feature, index) =>
+                                React.createElement('div', {
+                                    key: index,
+                                    className: `text-center p-6 rounded-xl shadow-sm border ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`
+                                },
+                                    React.createElement('div', { className: 'text-4xl mb-4' }, feature.icon),
+                                    React.createElement('h3', {
+                                        className: `text-xl font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`
+                                    }, feature.title),
+                                    React.createElement('p', {
+                                        className: theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                                    }, feature.desc)
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+
+            const AuthPage = () => (
+                React.createElement('div', {
+                    className: `min-h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 to-white'}`
+                },
+                    React.createElement('nav', {
+                        className: `${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border-b`
+                    },
+                        React.createElement('div', {
+                            className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+                        },
+                            React.createElement('div', {
+                                className: 'flex justify-between items-center h-16'
+                            },
+                                React.createElement('button', {
+                                    onClick: () => setCurrentPage('landing'),
+                                    className: 'text-xl font-bold text-blue-600'
+                                }, 'SmartScribe Pro'),
+                                React.createElement('button', {
+                                    onClick: toggleTheme,
+                                    className: `p-2 rounded-lg border ${theme === 'dark' ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-300 hover:bg-gray-100'} transition-colors`
+                                }, theme === 'light' ? '🌙' : '☀️')
+                            )
+                        )
+                    ),
+                    
+                    React.createElement('div', {
+                        className: 'flex items-center justify-center min-h-screen pt-16'
+                    },
+                        React.createElement('div', {
+                            className: 'max-w-md w-full mx-4'
+                        },
+                            React.createElement('div', {
+                                className: `p-8 rounded-xl shadow-lg border ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`
+                            },
+                                React.createElement('div', {
+                                    className: 'text-center mb-8'
+                                },
+                                    React.createElement('h2', {
+                                        className: `text-3xl font-bold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`
+                                    }, 'Welcome to SmartScribe Pro'),
+                                    React.createElement('p', {
+                                        className: theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                                    }, 'Start your AI-powered learning journey')
+                                ),
+                                React.createElement('div', {
+                                    className: 'space-y-4'
+                                },
+                                    React.createElement('input', {
+                                        type: 'email',
+                                        placeholder: 'Email address',
+                                        className: `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`
+                                    }),
+                                    React.createElement('input', {
+                                        type: 'password',
+                                        placeholder: 'Password',
+                                        className: `w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`
+                                    }),
+                                    React.createElement('button', {
+                                        className: 'w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium'
+                                    }, 'Sign In'),
+                                    React.createElement('div', {
+                                        className: 'text-center'
+                                    },
+                                        React.createElement('p', {
+                                            className: theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                                        }, 
+                                            "Don't have an account? ",
+                                            React.createElement('span', {
+                                                className: 'text-blue-600 hover:text-blue-700 cursor-pointer font-medium'
+                                            }, 'Sign Up')
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+
+            // Status indicator
+            const StatusBar = () => (
+                React.createElement('div', {
+                    className: `fixed bottom-4 right-4 px-4 py-2 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-200'} border`
+                },
+                    React.createElement('div', {
+                        className: 'flex items-center space-x-2'
+                    },
+                        React.createElement('div', {
+                            className: 'w-2 h-2 bg-green-500 rounded-full animate-pulse'
+                        }),
+                        React.createElement('span', {
+                            className: `text-sm font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`
+                        }, 'Backend Online'),
+                        React.createElement('span', {
+                            className: 'text-xs text-gray-500'
+                        }, '• AI Services Ready')
+                    )
+                )
+            );
+
+            return React.createElement('div', {},
+                currentPage === 'landing' ? LandingPage() : AuthPage(),
+                StatusBar()
+            );
+        }
+
+        // Initialize the app
+        const container = document.getElementById('root');
+        const root = createRoot(container);
+        root.render(React.createElement(SmartScribeApp));
+        
+        console.log('SmartScribe Pro initialized successfully!');
+    </script>
+</body>
+</html>

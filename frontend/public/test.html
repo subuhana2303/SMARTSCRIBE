@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - SmartScribe Pro</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+        const { createRoot } = ReactDOM;
+
+        function TestApp() {
+            const [count, setCount] = useState(0);
+            
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center">
+                    <div className="text-center p-8">
+                        <h1 className="text-4xl font-bold text-blue-600 mb-4">
+                            SmartScribe Pro
+                        </h1>
+                        <p className="text-xl text-gray-600 mb-6">
+                            AI-Powered Learning Platform
+                        </p>
+                        <div className="space-y-4">
+                            <button 
+                                onClick={() => setCount(count + 1)}
+                                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                            >
+                                Test Button: {count}
+                            </button>
+                            <div className="text-gray-500">
+                                ✅ React 18 Working<br/>
+                                ✅ Tailwind CSS Working<br/>
+                                ✅ Babel Transform Working
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const container = document.getElementById('root');
+        const root = createRoot(container);
+        root.render(<TestApp />);
+    </script>
+</body>
+</html>

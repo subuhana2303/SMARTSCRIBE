@@ -1,0 +1,7 @@
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Block sensitive folders (optional)
+Disallow: /api/
+Disallow: /backend/

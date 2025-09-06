@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test - SmartScribe Pro</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script>
+        console.log('Script starting...');
+        console.log('React:', typeof React);
+        console.log('ReactDOM:', typeof ReactDOM);
+        
+        function SimpleApp() {
+            return React.createElement('div', {
+                className: 'min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center'
+            }, 
+                React.createElement('div', {
+                    className: 'text-center p-8'
+                },
+                    React.createElement('h1', {
+                        className: 'text-4xl font-bold text-blue-600 mb-4'
+                    }, 'SmartScribe Pro'),
+                    React.createElement('p', {
+                        className: 'text-xl text-gray-600 mb-6'
+                    }, 'AI-Powered Learning Platform'),
+                    React.createElement('div', {
+                        className: 'text-green-600 font-medium'
+                    }, '✅ System Online')
+                )
+            );
+        }
+        
+        console.log('Creating app...');
+        const container = document.getElementById('root');
+        console.log('Container:', container);
+        
+        const root = ReactDOM.createRoot(container);
+        console.log('Root created:', root);
+        
+        root.render(React.createElement(SimpleApp));
+        console.log('App rendered');
+    </script>
+</body>
+</html>

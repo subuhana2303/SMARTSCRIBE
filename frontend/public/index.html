@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartScribe Pro - AI-Powered Learning Platform</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.15.0/dist/umd/react-router-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/axios@1.4.0/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="src/styles/globals.css">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#eff6ff',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Load all source files -->
+    <script type="text/babel" src="src/lib/utils.js"></script>
+    <script type="text/babel" src="src/lib/api.js"></script>
+    <script type="text/babel" src="src/context/ThemeContext.jsx"></script>
+    <script type="text/babel" src="src/hooks/useAuth.jsx"></script>
+    <script type="text/babel" src="src/components/ThemeToggle.jsx"></script>
+    <script type="text/babel" src="src/components/Navbar.jsx"></script>
+    <script type="text/babel" src="src/components/Layout.jsx"></script>
+    <script type="text/babel" src="src/components/ProtectedRoute.jsx"></script>
+    <script type="text/babel" src="src/pages/Landing.jsx"></script>
+    <script type="text/babel" src="src/pages/Auth.jsx"></script>
+    <script type="text/babel" src="src/pages/Dashboard.jsx"></script>
+    <script type="text/babel" src="src/pages/Upload.jsx"></script>
+    <script type="text/babel" src="src/pages/Content.jsx"></script>
+    <script type="text/babel" src="src/pages/Quiz.jsx"></script>
+    <script type="text/babel" src="src/pages/Analytics.jsx"></script>
+    <script type="text/babel" src="src/App.jsx"></script>
+    <script type="text/babel" src="src/main.jsx"></script>
+  </body>
+</html>
